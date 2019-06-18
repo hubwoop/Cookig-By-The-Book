@@ -1,0 +1,50 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "array",
+  "title": "The Root Schema",
+  "items": {
+    "$id": "#/items",
+    "type": "object",
+    "title": "The Items Schema",
+    "required": [
+      "title",
+      "amount",
+      "unit"
+    ],
+    "properties": {
+      "title": {
+        "$id": "#/items/properties/title",
+        "type": "string",
+        "title": "The Title Schema",
+        "default": "",
+        "examples": [
+          "Salt"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "amount": {
+        "$id": "#/items/properties/amount",
+        "type": "string",
+        "title": "The Amount Schema",
+        "default": "",
+        "examples": [
+          "3"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "unit": {
+        "$id": "#/items/properties/unit",
+        "type": "string",
+        "title": "The Unit Schema",
+        "default": "",
+        "examples": [
+          "Tbsp."
+        ],
+        "pattern": "^(.*)$"
+      }
+    }
+  }
+}
+

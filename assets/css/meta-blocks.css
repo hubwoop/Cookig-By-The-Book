@@ -1,0 +1,21 @@
+div[class$="__metaboxes"] div[id^="cbtb-"] input[type="text"],
+div[class$="__metaboxes"] div[id^="cbtb-"] input[type="number"] {
+    margin: 0;
+    outline: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 1px solid #999999;
+    width: 40px;
+}
+
+div[class$="__metaboxes"] div[id^="cbtb-"] input[type="text"]:focus,
+div[class$="__metaboxes"] div[id^="cbtb-"] input[type="number"]:focus {
+    border-bottom: 1px solid #414141;
+}
+
+.cbtb-invalid-input {
+    border: 1px solid red !important;
+}

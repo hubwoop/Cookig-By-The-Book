@@ -1,0 +1,4 @@
+div#wpbody-content .count {
+    /* added on edit-comments.php for recipe authors */
+    display: none;
+}

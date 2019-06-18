@@ -1,0 +1,34 @@
+@startuml
+
+interface iMetaBox {
+    +void display(WP_Post $post)
+    +void save(int $recipe_id)
+    +mixed sanitize(string $input)
+    +string get_name()
+}
+
+class MetaBox {
+}
+
+
+
+iMetaBox <|.. MetaBox
+
+class MetaBoxes {
+}
+
+class ArrayIterator {
+
+}
+
+
+ArrayIterator <|-- MetaBoxes
+MetaBoxes o-- MetaBox
+
+class RecipeBlockEditor {
+    -MetaBoxes $meta_boxes
+}
+
+RecipeBlockEditor o-- MetaBoxes
+
+@enduml

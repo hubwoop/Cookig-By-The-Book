@@ -1,0 +1,24 @@
+span[class^="cbtb-difficulty-"]::before {
+    content: ' ';
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.2em;
+}
+
+.cbtb-difficulty-hard::before {
+    background-color: red;
+}
+
+.cbtb-difficulty-medium::before {
+    background-color: yellow;
+}
+
+.cbtb-difficulty-easy::before {
+    background-color: green;
+}
+
+span[class$="-duration"] {
+    margin-right: 1em;
+}
