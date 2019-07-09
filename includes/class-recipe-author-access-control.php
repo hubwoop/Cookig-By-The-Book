@@ -21,6 +21,7 @@ class RecipeAuthorAccessControl {
 		add_action( 'admin_menu', array( $this, 'reduce_admin_menu_for_recipe_authors' ) );
 		add_action( 'admin_bar_menu', array( $this, 'remove_wp_post_nodes_for_recipe_authors' ), 75 );
 		add_action( 'load-index.php', array( $this, 'dashboard_redirect' ) );
+		add_action( 'current_screen', array( $this, 'new_post_redirect' ) );
 		add_action( 'pre_get_posts', array( $this, 'query_set_only_recipe_author' ) );
 		add_action( 'pre_get_posts', array( $this, 'disallow_recipe_authors_editing_posts' ) );
 		add_action( 'pre_get_comments', array( $this, 'authors_recipe_comments_only' ) );
@@ -28,10 +29,10 @@ class RecipeAuthorAccessControl {
 		$this->log = Log::get_instance();
 	}
 
-    /**
-     * Remove the edit.php, tools.php and index.php pages for recipe authors
-     */
-    public function reduce_admin_menu_for_recipe_authors() {
+	/**
+	 * Remove the edit.php, tools.php and index.php pages for recipe authors
+	 */
+	public function reduce_admin_menu_for_recipe_authors() {
 		if ( RoleManager::current_user_is_recipe_author() ) {
 			remove_menu_page( 'edit.php' );
 			remove_menu_page( 'tools.php' );
@@ -39,25 +40,34 @@ class RecipeAuthorAccessControl {
 		}
 	}
 
-    /**
-     * @param $wp_admin_bar
-     *
-     * Used to remove the new-post-node from the admin bar which is available because we needed to enable the
-     * edit_posts capability for recipe authors.
-     */
-    public function remove_wp_post_nodes_for_recipe_authors($wp_admin_bar ) {
+	/**
+	 * @param $wp_admin_bar
+	 *
+	 * Used to remove the new-post-node from the admin bar which is available because we needed to enable the
+	 * edit_posts capability for recipe authors.
+	 */
+	public function remove_wp_post_nodes_for_recipe_authors( $wp_admin_bar ) {
 		if ( RoleManager::current_user_is_recipe_author() ) {
 			$wp_admin_bar->remove_node( 'new-post' );
 		}
 	}
 
-    /**
-     * A redirect to the recipe edit screen is performed instead of loading the index screen.
-     */
-    public function dashboard_redirect() {
+	/**
+	 * A redirect to the recipe edit screen is performed instead of loading the index screen.
+	 */
+	public function dashboard_redirect() {
 		if ( RoleManager::current_user_is_recipe_author() ) {
 			wp_redirect( admin_url( 'edit.php?post_type=' . RecipePlugin::$post_type_name ) );
 		}
+	}
+
+	/**
+	 * Performs a redirect if a recipe author manages tries to edit or create posts.
+	 */
+	public function new_post_redirect() {
+		if ( RoleManager::current_user_is_recipe_author() && get_current_screen()->id === 'post' ) {
+			wp_redirect( admin_url( 'post-new.php?post_type=' . RecipePlugin::$post_type_name ) );
+		};
 	}
 
 	/**

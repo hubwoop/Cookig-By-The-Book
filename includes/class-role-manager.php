@@ -21,8 +21,10 @@ class RoleManager {
 		'publish_recipes'          => true
 	);
 	private static $custom_admin_capabilities = array(
-		'edit_others_recipes'  => true,
-		'read_private_recipes' => true
+		'edit_others_recipes'      => true,
+		'read_private_recipes'     => true,
+		'delete_others_recipes'    => true,
+		'delete_published_recipes' => true
 	);
 	private $log;
 
@@ -30,10 +32,10 @@ class RoleManager {
 		$this->log = Log::get_instance();
 	}
 
-    /**
-     * Called on plugin (singleton) instantiation.
-     */
-    public function setup_roles_and_capabilities(): void {
+	/**
+	 * Called on plugin (singleton) instantiation.
+	 */
+	public function setup_roles_and_capabilities(): void {
 		$this->introduce_recipe_author_role();
 		$this->add_capabilities_to_existing_roles();
 	}

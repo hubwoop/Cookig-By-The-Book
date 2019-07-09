@@ -50,7 +50,9 @@ class DifficultyMetaBox implements iMetaBox {
 	}
 
 	public function save( int $recipe_id ): void {
-		update_post_meta( $recipe_id, self::$meta_key, $_POST['cbtb_difficulty_field'] );
+	    if(isset($_POST['cbtb_difficulty_field'])) {
+		    update_post_meta( $recipe_id, self::$meta_key, $_POST['cbtb_difficulty_field'] );
+	    }
 	}
 
 	public function sanitize( string $input ) {

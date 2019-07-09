@@ -1,7 +1,7 @@
 .cbtb-ingredients-table-head {
     margin-top: 1em;
-
 }
+
 .cbtb-dragged {
     background-color: rgba(169, 169, 169, 0.42);
 }
@@ -15,7 +15,7 @@
     cursor: grab;
 }
 
-.cbtb-ingredients-table>span:nth-child(1), #add-new-ingredient-title {
+.cbtb-ingredients-table > span:nth-child(1), #add-new-ingredient-title {
     padding-left: 25px;
     width: 300px;
     overflow: hidden;
@@ -26,13 +26,13 @@
     margin-left: 25px;
 }
 
-.cbtb-ingredients-table>span:nth-child(2), #add-new-ingredient-amount,
-.cbtb-ingredients-table>span:nth-child(3), #add-new-ingredient-unit {
+.cbtb-ingredients-table > span:nth-child(2), #add-new-ingredient-amount,
+.cbtb-ingredients-table > span:nth-child(3), #add-new-ingredient-unit {
     width: 50px;
     overflow: hidden;
 }
 
-.cbtb-ingredients-table>#list_item_adder, .cbtb-remove-button {
+.cbtb-ingredients-table > #list_item_adder, .cbtb-remove-button {
     display: flex;
     justify-content: center;
     width: 20px;
@@ -62,6 +62,7 @@ li.cbtb-dragged::before {
     margin-top: 1em;
     color: #f05a4f;
 }
+
 #cbtb-ingredients > h2 > span::before {
     display: inline-block;
     content: ' ';

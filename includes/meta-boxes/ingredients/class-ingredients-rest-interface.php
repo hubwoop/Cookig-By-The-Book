@@ -11,6 +11,8 @@ include_once 'class-ingredients-json-validator.php';
 class IngredientsRestInterface {
 
 	private $log;
+	private $namespace = 'cbtb-recipe/v1';
+	private $route = '/recipe/(?P<id>\d+)/ingredients';
 
 	public function __construct() {
 		$this->log = Log::get_instance();
@@ -22,11 +24,16 @@ class IngredientsRestInterface {
 	}
 
 	function add_ingredients_endpoint() {
-		register_rest_route( 'cbtb-recipe/v1', '/recipe/(?P<id>\d+)/ingredients', array(
-			'methods'             => WP_REST_Server::EDITABLE,
-			'callback'            => array( $this, 'update_ingredients_meta' ),
-			'permission_callback' => array( $this, 'permission_callback' )
-		) );
+		register_rest_route( $this->namespace, $this->route,
+			array(
+				array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'update_ingredients_meta' ),
+					'permission_callback' => array( $this, 'permission_callback' ),
+				),
+				'schema' => array( $this, 'get_recipe_schema' )
+			)
+		);
 	}
 
 	/**
@@ -52,6 +59,84 @@ class IngredientsRestInterface {
 
 		return current_user_can( 'edit_recipes', $recipe_id )
 		       && IngredientsJSONValidator::valid_ingredients( $request->get_body() );
+	}
+
+	/**
+	 * @return array
+	 * defines and returns the ingredient list JSON-schema (https://json-schema.org/). Try:
+	 *
+	 * fetch('http://localhost/wp-json/cbtb-recipe/v1/recipe/<RECIPE_ID>/ingredients', {method: 'OPTIONS'})
+	 * .then(function(response) { return response.json(); })
+	 * .then(function(myJson) { console.log(myJson); });
+	 *
+	 * in your browser! See also: https://developer.wordpress.org/rest-api/extending-the-rest-api/schema/
+	 */
+	function get_recipe_schema() {
+		$schema = array(
+			'definitions' => array(),
+			'$schema'     => 'http://json-schema.org/draft-07/schema#',
+			'$id'         => rest_url() . $this->namespace . $this->route,
+			'type'        => 'array',
+			'maxItems'    => 100,
+			'title'       => 'The Root Schema',
+			'items'       =>
+				array(
+					'$id'                  => '#/items',
+					'type'                 => 'object',
+					'title'                => 'The Items Schema',
+					'required'             =>
+						array(
+							0 => 'title',
+							1 => 'amount',
+							2 => 'unit',
+						),
+					'properties'           =>
+						array(
+							'title'  =>
+								array(
+									'$id'       => '#/items/properties/title',
+									'type'      => 'string',
+									'maxLength' => 100,
+									'title'     => 'The Title Schema',
+									'default'   => '',
+									'examples'  =>
+										array(
+											0 => 'Salt',
+										),
+									'pattern'   => '^(.*)$',
+								),
+							'amount' =>
+								array(
+									'$id'       => '#/items/properties/amount',
+									'type'      => 'string',
+									'maxLength' => 100,
+									'title'     => 'The Amount Schema',
+									'default'   => '',
+									'examples'  =>
+										array(
+											0 => '3',
+										),
+									'pattern'   => '^(.*)$',
+								),
+							'unit'   =>
+								array(
+									'$id'       => '#/items/properties/unit',
+									'type'      => 'string',
+									'maxLength' => 100,
+									'title'     => 'The Unit Schema',
+									'default'   => '',
+									'examples'  =>
+										array(
+											0 => 'Tbsp.',
+										),
+									'pattern'   => '^(.*)$',
+								),
+						),
+					"additionalProperties" => false,
+				),
+		);
+
+		return $schema;
 	}
 
 }

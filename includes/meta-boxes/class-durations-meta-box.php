@@ -98,7 +98,7 @@ class DurationsMetaBox implements iMetaBox {
 		}
 	}
 
-	private function save_duration( int $duration, string $duration_type, int $recipe_id ): void {
+	private function save_duration( string $duration, string $duration_type, int $recipe_id ): void {
 		update_post_meta( $recipe_id, '_cbtb_durations_' . $duration_type . '_time', $duration );
 	}
 

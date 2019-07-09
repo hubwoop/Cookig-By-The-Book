@@ -30,8 +30,9 @@ Set the "New User Default Role" to "Recipe Author".
 - Reduced Block editor
 - Added Meta-Boxes
     - To manage: Ingredients, Durations, Difficulty, Servings
-    - Gutenberg Editor friendly
-    - Ingredients MetaBox: Utilizing only components already shipped with wordpress. Manages the creation of an ingredients list as a meta datum of a recipe (see `assets/js/ingredients-meta-list.js`)
+    - Interaction with Gutenberg Editor via WP(/Redux)-Store
+    - Hand-made js library, utilizing only components already shipped with wordpress. Manages the creation of an 
+      ingredients list as a meta datum of a recipe (see `assets/js/ingredients-meta-list.js`)
         - Drag and Drop support
         - Touch support (via jquery.ui.touch-punch plugin)
         - History (Undo/Redo functionality)
@@ -44,6 +45,7 @@ Set the "New User Default Role" to "Recipe Author".
       Further Meta-Boxes can be by integrating like the other ones as described in the following UML diagram:
       ![MetaBox UML Diagram](assets/documentation/metaboxplantuml.png)
     - Introduced new WP-API Endpoint for recipes.  
+      Effort to improve the documentation along the way: https://github.com/WP-API/docs/pull/45
     - Front and Back-end CSS to display metadata (input)
 - Added Taxonomies
     - World cuisine and meal type
@@ -92,3 +94,6 @@ Allowing the extension of this plugin with your own functionality.
 Icons made by [Freepik](https://www.freepik.com/) from 
 [www.flaticon.com](https://www.flaticon.com/) is 
 licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
+
+## Misc
+- `cd phpStormProjects\pro-at-cooking\wp-content\plugins\cooking-by-the-book\assets\js`
