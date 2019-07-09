@@ -6,6 +6,7 @@ Uses modern JavaScript (>=ES6) tested in
 Firefox Quantum 66.0.5, 
 Microsoft Edge 42.17134.1.0 (EdgeHTML 17.17134) 
 and Google Chrome 74.0.3729.157 
+[![BCH compliance](https://bettercodehub.com/edge/badge/hubwoop/Cookig-By-The-Book?branch=master)](https://bettercodehub.com/)
 
 ## How-To
 ### Show recipes on the front page / home page
@@ -94,6 +95,3 @@ Allowing the extension of this plugin with your own functionality.
 Icons made by [Freepik](https://www.freepik.com/) from 
 [www.flaticon.com](https://www.flaticon.com/) is 
 licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
-
-## Misc
-- `cd phpStormProjects\pro-at-cooking\wp-content\plugins\cooking-by-the-book\assets\js`
