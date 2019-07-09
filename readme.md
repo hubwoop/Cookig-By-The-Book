@@ -5,7 +5,7 @@ Tested with Wordpress 5.2 and PHP 7.3.3
 Uses modern JavaScript (>=ES6) tested in 
 Firefox Quantum 66.0.5, 
 Microsoft Edge 42.17134.1.0 (EdgeHTML 17.17134) 
-and Google Chrome 74.0.3729.157 
+and Google Chrome 74.0.3729.157   
 [![BCH compliance](https://bettercodehub.com/edge/badge/hubwoop/Cookig-By-The-Book?branch=master)](https://bettercodehub.com/)
 
 ## How-To
