@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Cooking by the book
-Plugin URI: https://git.informatik.fh-nuernberg.de/cms-kochen/pro-at-cooking
+Plugin URI: https://github.com/hubwoop/Cookig-By-The-Book
 Description: Allows users to create recipes with lots of meta data
 Version: 1.0
 Author: Jonas Mai
